@@ -39,7 +39,7 @@ workerroute.put("/createlog",(req,res)=>{
     if(!req.body || !req.body.starttime || !req.body.endtime || !req.body.remark || !req.body.logid){
         return res.status(400).json({message:"Invalid Data"})
      } 
-     let query=`UPDATE worklog SET starttime='${req.body.starttime}', endtime='${req.body.endtime}' , remark='${req.body.remark}' WHERE logid='${req.body.logid}'`;
+     let query=`UPDATE worklog SET starttime='${req.body.starttime}', endtime='${req.body.endtime}' , remark='${req.body.remark}' WHERE logid='${req.body.logid}' AND userid='${req.userdata.userid}'`;
      insertquery(query).then(result=>{
         if(result.status){
             res.status(200).json({message:"Log Updated successfully"})
